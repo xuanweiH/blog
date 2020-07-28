@@ -63,30 +63,42 @@
 
 
 
-var p1 = new Promise((resolve, reject) => {
-    console.log("promise1")
-    resolve()
-})
-p1.then(() => {
-        console.log("then11")
-        new Promise((resolve, reject) => {
-            console.log("promise2")
-            resolve();
-        })
-        .then(() => {
-            console.log("then21")
-        })
-        .then(() => {
-            console.log("then22")
-        })
-  })
-p1.then(() => {
-      console.log("then12")
-      new Promise((resolve, reject) => {
-          console.log("promise3")
-          resolve();
-      })
-      .then(() => {
-          console.log("then31")
-      })
-  })
+// var p1 = new Promise((resolve, reject) => {
+//     console.log("promise1")
+//     resolve()
+// })
+// p1.then(() => {
+//         console.log("then11")
+//         new Promise((resolve, reject) => {
+//             console.log("promise2")
+//             resolve();
+//         })
+//         .then(() => {
+//             console.log("then21")
+//         })
+//         .then(() => {
+//             console.log("then22")
+//         })
+//   })
+// p1.then(() => {
+//       console.log("then12")
+//       new Promise((resolve, reject) => {
+//           console.log("promise3")
+//           resolve();
+//       })
+//       .then(() => {
+//           console.log("then31")
+//       })
+//   })
+
+
+
+var myname = "极客时间"
+function showName(){
+  console.log(myname);
+  if(0){
+   var myname = "极客邦"
+  }
+  console.log(myname);
+}
+showName()

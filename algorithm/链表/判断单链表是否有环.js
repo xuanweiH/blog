@@ -26,7 +26,7 @@ function isCircle(head) {
 }
 // 或者快慢指针 快指针一次走2 慢一次走1 如果有环 最终一定会相遇
 function isCir(head) {
-   if (!head || !head.next) return true
+   if (!head || !head.next) return false
    let fast = head.next.next, slow = head.next
    // 如果快慢指针不相同进循环
    while (fast !== slow) {
@@ -39,3 +39,4 @@ function isCir(head) {
    return true
 
 }
+
