@@ -93,12 +93,46 @@
 
 
 
-var myname = "极客时间"
-function showName(){
-  console.log(myname);
-  if(0){
-   var myname = "极客邦"
-  }
-  console.log(myname);
-}
-showName()
+// var myname = "极客时间"
+// function showName(){
+//   console.log(myname);
+//   if(0){
+//    var myname = "极客邦"
+//   }
+//   console.log(myname);
+// }
+// showName()
+
+
+// const countWords = (words) => {
+//   const counts = { };
+//   for (const word of words) {
+//     counts[word] = (counts[word] || 0) + 1;
+//   }
+//   return counts;
+// };
+// const counts = countWords(['constructor', 'creates', 'a', 'bug']);
+// console.log(counts)
+
+// let obj = {
+//   1: 'xx',
+//   2: 'hh'
+// }
+// console.log(obj)
+
+
+let arr = ['a', 'b']
+    let obj = {
+        'a': 1,
+        'b': 2,
+        'c': 3
+    }
+    function test () {
+      return arr.reduce((acc, curr) => {
+        acc[curr] = obj[curr]
+        console.log(acc, obj[curr])
+        return acc;
+      }, {})
+    }
+    const result = test()
+    console.log(result)
