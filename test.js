@@ -121,18 +121,25 @@
 // console.log(obj)
 
 
-let arr = ['a', 'b']
-    let obj = {
-        'a': 1,
-        'b': 2,
-        'c': 3
-    }
-    function test () {
-      return arr.reduce((acc, curr) => {
-        acc[curr] = obj[curr]
-        console.log(acc, obj[curr])
-        return acc;
-      }, {})
-    }
-    const result = test()
-    console.log(result)
+// let arr = ['a', 'b']
+//     let obj = {
+//         'a': 1,
+//         'b': 2,
+//         'c': 3
+//     }
+//     function test () {
+//       return arr.reduce((acc, curr) => {
+//         acc[curr] = obj[curr]
+//         console.log(acc, obj[curr])
+//         return acc;
+//       }, {})
+//     }
+//     const result = test()
+//     console.log(result)
+
+
+    for (var i = 0; i < 5; i++) {
+      setTimeout(function(j) {
+          console.log(new Date, j);
+      }, 1000, i);
+  }
