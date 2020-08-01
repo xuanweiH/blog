@@ -43,7 +43,7 @@ function reverseString (str) {
       if (chat === ' ' && word) {
           queue.unshift(chat)
           word = ''
-      } else {
+      } else if (chat !== ' '){
           word += chat
       }
       left ++ 
