@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>实现js继承</title>
+</head>
+<body>
+</body>
+</html>
+<script>
+//   1. call继承
+// function Parent () {
+//     this.name = 'father'
+//     this.getName = function () {
+//         console.log(this.name)
+//     }
+// }
+// Parent.prototype.smile = function () {
+//     console.log('smile')
+// }
+// function Son () {
+//     Parent.call(this)
+//     this.type = 'son'
+// }
+
+// let son = new Son()
+// let f= new Parent()
+// console.log(f.smile())
+// console.log(son.smile())
+// 存在问题 如果父类的原型链上有 方法 子类无法继承
+
+// 2. 原型链继承
+// function Parent1 () {
+//     this.name = 'parent1'
+//     this.arr = [1,2,3,4]
+// }
+// Parent1.prototype.laugh = function () {
+//     console.log('laugh')
+// }
+// function Son1 () {
+//     this.type = 'son1'
+// }
+// Son1.prototype = new Parent1()
+// let son1 = new Son1()
+// console.log(son1.laugh)
+// let son2 = new Son1()
+// son1.arr.push(1)
+// console.log(son2.arr)
+// 解决不能用原型链上的方法
+// 因为公用了一个原型链 所以实例对象之间会互相影响
+
+// 3. 组合继承  将前两种结合
+// function Parent2 () {
+//     this.name = 'parent2'
+//     this.arr = [1,2,3,4]
+// }
+// Parent2.prototype.laugh = function () {
+//     console.log('laugh')
+// }
+// function Son2 () {
+//     Parent2.call(this)
+//     this.type = 'son2'
+// }
+// Son2.prototype = new Parent2()
+// let son3 = new Son2()
+// console.log(son3.laugh)
+// let son4 = new Son2()
+// son3.arr.push(1)
+// console.log(son4.arr)
+// 问题 Parent2构造函数 其实都相当于 多执行
+// 多执行一次 Son2.prototype = new Parent2()
+
+// 4. 优化组合继承
+// function Parent3 () {
+//     this.name = 'parent3'
+//     this.arr = [1,2,3,4]
+// }
+// Parent3.prototype.laugh = function () {
+//     console.log('laugh')
+// }
+// function Son3 () {
+//     Parent3.call(this)
+//     this.type = 'son3'
+// }
+// Son3.prototype = Parent3.prototype 
+// let son5 = new Son3()
+// console.log(son5) // 发现constructor 是Parent3 本来应该是Son3
+
+// 5. 寄生组合继承
+// function Parent4 () {
+//     this.name = 'parent4'
+//     this.arr = [1,2,3,4]
+// }
+// Parent4.prototype.laugh = function () {
+//     console.log('laugh')
+// }
+// function Son4 () {
+//     Parent4.call(this)
+//     this.type = 'son4'
+// }
+// Son4.prototype = Object.create(Parent4.prototype) // Object.create相当于 {}.__proto__ = Parent4.prototype
+// Son4.prototype.constructor = Son4 
+// let son6 = new Son4()
+// console.log(son6)
+// 没什么大问题了
+
+// 6. class继承
+class Point {
+    constructor() {
+        this.x = 1
+        this.y = 2
+    }
+    toString () {
+       console.log('toString')
+       return '111'
+    }
+}
+class ColorPoint extends Point {
+  constructor(color, x, y) {
+    super(x, y); // 调用父类的constructor(x, y) 且子类必须在constructor中调用super 否则子类得不到this 对象
+    this.color = color;
+  }
+  toString() {
+    return this.color + ' ' + super.toString(); // 调用父类的toString()
+  }
+}
+let np = new ColorPoint('gre')
+console.log(np)
+console.log(np.toString())
+
+// 通过babel 转译后的es5 class
+// function _possibleConstructorReturn (self, call) { 
+// 		// ...
+// 		return call && (typeof call === 'object' || typeof call === 'function') ? call : self; 
+// }
+// function _inherits (subClass, superClass) { 
+//     // ...
+//     //看到没有
+// 		subClass.prototype = Object.create(superClass && superClass.prototype, { 
+// 				constructor: { 
+// 						value: subClass, 
+// 						enumerable: false, 
+// 						writable: true, 
+// 						configurable: true 
+// 				} 
+// 		}); 
+// 		if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; 
+// }
+// var Parent = function Parent () {
+// 		// 验证是否是 Parent 构造出来的 this
+// 		_classCallCheck(this, Parent);
+// };
+// var Child = (function (_Parent) {
+// 		_inherits(Child, _Parent);
+
+// 		function Child () {
+// 				_classCallCheck(this, Child);
+		
+// 				return _possibleConstructorReturn(this, (Child.__proto__ || Object.getPrototypeOf(Child)).apply(this, arguments));
+// 		}
+
+// 		return Child;
+// }(Parent));
+
+// 继承的核心就在于_inherits函数 使用的依旧是组合寄生式继承 xx.prototype = Object.create()
+// 不过这里更加优秀 使用 Object.setPrototypeOf(subClass, superClass)继承父类的静态方法
+// Object.setPrototypeOf(object, prototype)                                                                                                                                                                              
+</script>
