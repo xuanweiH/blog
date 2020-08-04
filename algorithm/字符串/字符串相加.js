@@ -28,3 +28,19 @@ function sum (str1, str2) {
     if (tmp) res = 1+res
     return res
 }
+
+// 或者用数组来做 ~~(tmp/10)  ~~取整 大于等于10为1 小于10为0
+function add(str1, str2) {
+    let result = ''
+    let tempVal = 0
+    let arr1 = str1.split('')
+    let arr2 = str2.split('')
+  
+    while (arr1.length || arr2.length || tempVal) {
+      tempVal += ~~arr1.pop() + ~~arr2.pop()
+      result = tempVal % 10 + result
+      tempVal = ~~(tempVal / 10)
+    }
+  
+    return result.replace(/^0+/, '')
+  }
