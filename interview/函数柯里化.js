@@ -13,7 +13,7 @@
 //     }
 // }
 
-// 柯里化
+// 参数未知的柯里化
 function currying (fn, args=[]) {
   console.log(fn ,args)
   return function temp(...innerArgs) {
@@ -34,7 +34,7 @@ let add = currying(sum)
 console.log(add(1)(2,3)(4)())
 
 
-// 或者
+// 参数已知情况下的柯里化
 // function curry (fn) {
 //     if (fn.length <= 1) return fn
 //     const generator = (...args) => {
@@ -53,3 +53,5 @@ console.log(add(1)(2,3)(4)())
 // const addd = curry(add1)
 // const addd2 = curry(add2)
 // console.log(addd2(1)(2)(3))
+
+
