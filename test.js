@@ -143,3 +143,16 @@
           console.log(new Date, j);
       }, 1000, i);
   }
+
+  function curry (fn, args=[]) {
+     return function temp(...inner) {
+         if (inner.length>0) {
+             args=[...args,...inner]
+             return temp
+         } else {
+             const val = fn.apply(this,...args)
+             args = []
+             return val
+         }
+     }
+  }
