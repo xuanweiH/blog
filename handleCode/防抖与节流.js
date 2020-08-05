@@ -50,7 +50,7 @@ function throttle(fn, gap = 1000) {
   return function () {
     let self = this
     let nowTime = new Date().getTime()
-      if (nowTime - lastTime > 0) {
+      if (nowTime - lastTime > gap) {
           fn.apply(self, arguments)
           lastTime = nowTime
       }

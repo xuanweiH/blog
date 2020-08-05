@@ -14,44 +14,44 @@
 // }
 
 // 参数未知的柯里化
-function currying (fn, args=[]) {
-  console.log(fn ,args)
-  return function temp(...innerArgs) {
-      console.log(innerArgs)
-      if (innerArgs.length !== 0) {
-          args = [...args, ...innerArgs]
-          return temp
-      } else {
-          const val = fn.apply(this,args)
-          console.log(val)
-          args = []
-          return val
-      }
-  }
-}
-const sum = (...args) => args.reduce((a, b) => a + b);
-let add = currying(sum)
-console.log(add(1)(2,3)(4)())
+// function currying (fn, args=[]) {
+//   console.log(fn ,args)
+//   return function temp(...innerArgs) {
+//       console.log(innerArgs)
+//       if (innerArgs.length !== 0) {
+//           args = [...args, ...innerArgs]
+//           return temp
+//       } else {
+//           const val = fn.apply(this,args)
+//           console.log(val)
+//           args = []
+//           return val
+//       }
+//   }
+// }
+// const sum = (...args) => args.reduce((a, b) => a + b);
+// let add = currying(sum)
+// console.log(add(1)(2,3)(4)())
 
 
 // 参数已知情况下的柯里化
-// function curry (fn) {
-//     if (fn.length <= 1) return fn
-//     const generator = (...args) => {
-//         if(fn.length === args.length) {
-//             return fn(...args)
-//         } else {
-//             return (...args2) => {
-//                 return generator(...args, ...args2)
-//             }
-//         }
-//     }
-//     return generator
-// }
+function curry (fn) {
+    if (fn.length <= 1) return fn
+    const generator = (...args) => {
+        if(fn.length === args.length) {
+            return fn(...args)
+        } else {
+            return (...args2) => {
+                return generator(...args, ...args2)
+            }
+        }
+    }
+    return generator
+}
 // const add1 = (...args) => args.reduce((a, b) => a + b);
-// const add2 = (a,b,c) => a+b+c
-// const addd = curry(add1)
+const add2 = (a,b,c) => a+b+c
+const addd = curry(add2)
 // const addd2 = curry(add2)
-// console.log(addd2(1)(2)(3))
+console.log(addd(1))
 
 
