@@ -17,3 +17,13 @@ function myApply (context,arr) {
     delete context[fn]
     return res
 }
+// es6
+function myApply (context,args) {
+    context ? Object(context) : window
+    let fn = symbol()
+    context[fn] = this
+    let res 
+    res = args? context[fn](...args) : context[fn]()
+    delete context[fn]
+    return res
+}
