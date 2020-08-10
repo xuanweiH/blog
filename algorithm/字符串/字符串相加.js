@@ -21,14 +21,14 @@ function sum (str1, str2) {
     while (a || b) {
         a ? tmp += +str1[--a] : ''
         b ? tmp += +str2[--b] : ''
+        res = tmp%10 + res
+        if (tmp>9) tmp = 1
+        else tmp = 0
+        if (tmp) res = 1+res
     }
-    res = tmp%10 + res
-    if (tmp>9) tmp = 1
-    else tmp = 0
-    if (tmp) res = 1+res
     return res
 }
-
+console.log(sum('12314','1231'))
 // 或者用数组来做 ~~(tmp/10)  ~~取整 大于等于10为1 小于10为0
 function add(str1, str2) {
     let result = ''
