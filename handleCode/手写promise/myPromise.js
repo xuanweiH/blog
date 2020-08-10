@@ -34,7 +34,6 @@ class MyPromise {
             // 自己也可以用mutationObserver实现微任务队列
             setTimeout(fn)
         }
-
         let _reject = (val) => {
             const fn = () => {
                 // 失败回调队列同理
