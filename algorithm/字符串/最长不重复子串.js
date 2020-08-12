@@ -23,9 +23,8 @@ function getSon (str) {
        if (arr.includes(item)) {
            let index = arr.indexOf(item)
            arr.splice(0, index+1)
-       } else {
-           arr.push(item)
        }
+       arr.push(item)
    }
    length = arr.length > length ? arr.length:length
    return length
