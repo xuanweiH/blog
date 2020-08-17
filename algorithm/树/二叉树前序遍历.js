@@ -18,7 +18,7 @@
 function preOrderTraverse (root) {
    let res = []
    let preOrderTraverseNode = (node) => {
-       while (node) {
+       if (node) {
         res.push(node.val)
         preOrderTraverseNode(node.left)
         preOrderTraverseNode(node.left)
