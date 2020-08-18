@@ -25,3 +25,24 @@ function midOrderTraserve (root) {
     midOrderTraserveNode(root)
     return res
 }
+
+// 如果不用递归 迭代的话
+// 首先把 根节点推入栈中 然后把左树依次推入栈中
+// 左树遍历完成后 取出栈首 推入结果中 此时推进的全是左树 最后一个为根
+// 然后再循环右树
+function midOrderTraserve (root) {
+   let res = []
+   let stack = []
+   let node = root
+   while(node || stack.length) {
+      // 遍历左子树
+      while(node) {
+         stack.push(node)
+         node = node.left
+      }
+      node = stack.pop()
+      res.push(node.val)
+      node = node.right
+   }
+   return res
+}
