@@ -138,21 +138,35 @@
 //     console.log(result)
 
 
-    for (var i = 0; i < 5; i++) {
-      setTimeout(function(j) {
-          console.log(new Date, j);
-      }, 1000, i);
-  }
+//     for (var i = 0; i < 5; i++) {
+//       setTimeout(function(j) {
+//           console.log(new Date, j);
+//       }, 1000, i);
+//   }
 
-  function curry (fn, args=[]) {
-     return function temp(...inner) {
-         if (inner.length>0) {
-             args=[...args,...inner]
-             return temp
-         } else {
-             const val = fn.apply(this,...args)
-             args = []
-             return val
-         }
-     }
-  }
+//   function curry (fn, args=[]) {
+//      return function temp(...inner) {
+//          if (inner.length>0) {
+//              args=[...args,...inner]
+//              return temp
+//          } else {
+//              const val = fn.apply(this,...args)
+//              args = []
+//              return val
+//          }
+//      }
+//   }
+
+let data = [{
+    hai:'xxx',
+    dj: 1,
+    hh: {name:1}
+}, {
+    hai:'x1x',
+    dj: 2
+}]
+data.forEach(item => {
+    console.log(item['dj'])
+})
+let newList= Object.assign({},data)
+console.log(newList)
