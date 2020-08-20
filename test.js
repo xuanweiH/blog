@@ -157,16 +157,40 @@
 //      }
 //   }
 
-let data = [{
-    hai:'xxx',
-    dj: 1,
-    hh: {name:1}
-}, {
-    hai:'x1x',
-    dj: 2
-}]
-data.forEach(item => {
-    console.log(item['dj'])
-})
-let newList= Object.assign({},data)
-console.log(newList)
+// let data = [{
+//     hai:'xxx',
+//     dj: 1,
+//     hh: {name:1}
+// }, {
+//     hai:'x1x',
+//     dj: 2
+// }]
+// data.forEach(item => {
+//     console.log(item['dj'])
+// })
+// let newList= Object.assign({},data)
+// console.log(newList)
+
+
+function curry (fn, ...args) {
+    return function temp (...innerArgs) {
+        if (innerArgs.length !==0) {
+            args = [...args,...innerArgs]
+            return temp
+        } else {
+           const val = fn.apply(this, ...args)
+           args = []
+           return val
+        }
+    }
+}
+
+function curry (fn, ...args) {
+    return function temp (...innerArgs) {
+        if (innerArgs.length === args.length) {
+           return fn(...args)
+        } else {
+          
+        }
+    }
+}
