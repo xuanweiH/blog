@@ -37,4 +37,17 @@ function leveOrder (root) {
     }
     return res
 }
-// 
+// 深度优先遍历思路
+// 记录当前层 每次当前层遍历完 递归 层数加一
+function levelOrder (root) {
+   const res = []
+   let dep = function (node,depth) {
+       if (!node) return
+       res[depth] = res[depth] || []
+       res[depth].push(node.val)
+       dep(node.left, depth+1)
+       dep(node.right, depth+1)
+   }
+   dep(root,0)
+   return res
+}
