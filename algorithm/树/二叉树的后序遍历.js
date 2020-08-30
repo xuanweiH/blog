@@ -38,7 +38,7 @@ function postOrderTraserval (root) {
    while(stack.length) {
        const node = stack.pop()
        // stack.push 是根左右 如果用unshift就是 右左根
-       stack.unshift(node.val)
+       res.unshift(node.val)
        // 栈先进左再进右 那么出栈就是 先出右后出左  出了右以后是先往前插的 所以最后顺序就是左右根
        if (node.left) {
            stack.push(node.left)
@@ -48,4 +48,20 @@ function postOrderTraserval (root) {
        }
    }
    return res
+}
+
+// 复习二叉树后序遍历 栈
+function postOrderTraserval (root) {
+  // 后序遍历 左右根
+  let res = []
+  let stack = []
+  if(root) stack.push(root)
+  while (stack.length) {
+      let node = stack.pop()
+      res.unshift(node)
+      if (node.left) stack.push(node.left)
+      if(node.right) stack.push(node.right)
+  }
+  return res
+
 }
