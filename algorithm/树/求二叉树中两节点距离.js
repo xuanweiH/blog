@@ -47,3 +47,44 @@ const getPath = (root,p,path) => {
    return hasFound
 }
 
+
+
+
+
+
+// -----------------------------练习-------------------------------
+// const getDis = (root,p,q) => {
+//   let parent = getP(root,p,q)
+//   let ds = [], fs=[]
+//   getD(parent,p,ds)
+//   getD(parent,q,fs)
+//   return (ds.length+fs.length)
+// }
+
+// // 先求最近公共先祖
+// const getP = (root,p,q) => {
+//    if (root === null || root === p || root === q) return root
+//    const left = getP(root.left,p,q)
+//    const right = getP(root.right,p,q)
+//    if(left === null) return right
+//    if(right === null) return left
+//    return root
+// }
+
+// // qiu luj
+// const getD = (root,p,path) => {
+//    if (root === p) return true 
+//    let hasFound = false
+//    path.push(root)
+//    if (root.left) {
+//       hasFound = getD(root.left,p,path)
+//    } 
+//    if (!hasFound && root.right) {
+//       hasFound = getD(root.right,p,path)
+//    }
+//    if (!hasFound) {
+//       path.pop()
+//    }
+//    return hasFound
+
+// }
