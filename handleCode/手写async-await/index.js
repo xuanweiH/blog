@@ -25,7 +25,7 @@ function run (gen) {
                 return reject(err)
             }
             // res是一个对象 {done:false,value:xx} 递归的终止条件就是res.done为true说明调用结束
-            if (res.done) return res.value
+            if (res.done) return resolve(res.value)
             // promise.then实现自动迭代
             // 包装一层确保.then 调用前的是promise对象
             Promise.resolve(res.value).then(val => {
@@ -39,3 +39,4 @@ function run (gen) {
     })
    
 }
+
