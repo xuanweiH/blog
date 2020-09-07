@@ -74,4 +74,32 @@ let swap = (arr,i,j) => {
   arr[i] = arr[j]
   arr[j] = temp
 }
-console.log([,])
+
+
+// 空间换时间排序
+function getMinK (arr,k) {
+   return newSort(arr,10000,k)
+}
+function newSort (arr,maxValue,k) {
+   let bucket = new Array(maxValue+1),
+   arrlen = arr.length,
+   sortIndex = 0,
+   bucketlen = maxValue+1,
+   res = []
+   for (let i = 0; i<arrlen;i++) {
+     if (!bucket[arr[i]]) {
+       bucket[arr[i]] = 0
+     }
+     bucket[arr[i]]++
+   }
+   for (let i =0; i< bucketlen;i++) {
+     while(bucket[i]-- <0 && sortIndex<k) {
+       res[sortIndex++] = i
+     }
+     if (sortIndex === k) {
+       break
+     }
+   }
+   return res
+
+}
