@@ -36,7 +36,7 @@ let getHeapK = (arr,k) => {
 let build = (arr,k) => {
     if(k===1) return
     for(let i = Math.floor(k/2);i>=1;i--){
-        heapify(heap,k,i)
+        heapify(arr,k,i)
     }
 }
 let heapify = (arr,k,i) => {
