@@ -50,3 +50,106 @@ MidHeap.prototype.findMedian = function () {
   }
   return this.bigHeap.getHead()
 }
+// ------------------
+// 大顶堆构造函数
+function MaxHeap() {
+    let heap = [,]
+    this.size = () => heap.length -1
+    this.insert = (val) => {
+      heap.push(val)
+      let i = heap.length -1
+      if (Math.floor(i/2)>0 && heap[i]>heap[Math.floor(i/2)]) {
+         swap(heap,i,Math.floor(i/2))
+         i = Math.floor(i/2)
+      }
+    }
+    this.getHead = () => {
+        return heap.length>1? heap[1] : null
+    }
+    this.removeHead = () => {
+        if (heap.length>1) {
+            if(heap.length === 2) return heap.pop()
+            let num = heap[1]
+            heap[1] = heap.pop()
+            heapify(1)
+            return num
+        }
+        return null
+    }
+    let heapify = (i) => {
+        let k = heap.length -1
+        while(true) {
+            let maxIndex = i
+            if (2*1<=k && heap[2*i]>heap[i]){
+                maxIndex = 2*i
+            }
+            if (2*i+1<=k && heap[2*i+1]>heap[maxIndex]) {
+                maxIndex = 2*i+1
+            }
+            if (i!==maxIndex) {
+                swap(heap, i, maxIndex)
+                i = maxIndex
+            } else {
+                break
+            }
+        }
+    }
+    let swap = (arr,i,j) => {
+        let temp = arr[i]
+        arr[i] = arr[j]
+        arr[j] = temp
+    }
+}
+// --------------------
+// 小顶堆构造函数
+function MinHeap () {
+    let heap = [,]
+    this.size = () => heap.length -1
+    this.insert = (val) => {
+        heap.push(val)
+        let i = heap.length -1
+        if (Math.floor(i/2)>0 && heap[i]<heap[Math.floor(i/2)]) {
+            swap(heap, i, Math.floor(i/2))
+            i = Math.floor(i/2)
+        }
+    }
+    this.getHead = () => {
+        return heap.length>1 ? heap[1]:null
+    }
+    this.removeHead = () => {
+        if (heap.length > 1) {
+           if (heap.length === 2) {
+               return heap.pop()
+           }
+           let num = heap[1]
+           heap[1] = heap.pop()
+           heapify(1)
+           return num
+        }
+        return null
+    }
+    let heapify = (i) => {
+       let k = heap.length -1
+       while(true) {
+         let minIndex = i 
+         if (i*2<=k && heap[i*2]<heap[i]) {
+            minIndex = i*2
+         }
+         if (i*2+1<=k && heap[i*2+1]<heap[minIndex]) {
+             minIndex = i*2+1
+         }
+         if (i!== minIndex) {
+             swap(heap, i, minIndex)
+             i = minIndex
+         } else {
+             break
+         }
+       }
+    }
+    let swap = (arr,i,j) => {
+        let temp = arr[i]
+        arr[i] = arr[j]
+        arr[j] = temp
+    }
+
+}
