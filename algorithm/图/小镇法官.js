@@ -26,3 +26,21 @@
 // trust[i] 是完全不同的
 // trust[i][0] != trust[i][1]
 // 1 <= trust[i][0], trust[i][1] <= N
+
+// 思路 图的入度和出度
+// 入度 有向图的某个顶点作为终点的次数和。
+// 出度 有向图的某个顶点作为起点的次数和
+// 作为小镇的法官 不相信任何人 所以不会是起点 出度为0
+// 但是每个人都信任他 所以终点次数为N-1 
+function getPerson (N, trust) {
+   // 构造一个图
+   let graph = Array.from({length:N+1},()=> ({inDegree:0, outDegree:0}))
+   trust.forEach(([a,b]) => {
+      graph[a].outDegree++
+      graph[b].inDegree++
+   })
+   return graph.findIndex(({inDegree,outDegree},index)=>{
+       return index!==0 && inDegree===N-1 && outDegree===0
+   })
+
+}
