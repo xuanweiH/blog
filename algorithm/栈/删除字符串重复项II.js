@@ -31,6 +31,7 @@
 // 如果大于等于k就不进去
 
 // 精髓stack.push(prev+i) 相同时让栈尾的字符串进行累加 然后对比
+// deeedbbcccbdaa k=3
 function del (s, k) {
     let stack = []
     for (let i of s) {
