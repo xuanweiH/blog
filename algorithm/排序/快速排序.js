@@ -5,9 +5,12 @@
 // 以此类推 分块后再次找到基准点进行 快排递归执行 
 
 function quick_sort (arr,left,right) {
+  if (left>=right) return
   let partitionIndex = partition(arr,left,right)
   quick_sort(arr,left,partitionIndex-1)
   quick_sort(arr,partitionIndex+1,right) 
+  
+  // console.log(arr)
 }
 
 function partition (arr, left, right) {
@@ -15,13 +18,13 @@ function partition (arr, left, right) {
   let rightIndex = right-1
   // 设置最右边的元素为基点
   let pivot = arr[right]
-  while (true) {
+  while (1) {
       //   保证arr[leftIndex]都是比基点小的
       while(leftIndex<right && arr[leftIndex] <= pivot) {
         leftIndex++
       }
       //保证arr[leftIndex]都是比基点大的
-      while(left<=rightIndex && arr[rightIndex]>pivot) {
+      while(rightIndex>=left && arr[rightIndex]>pivot) {
         rightIndex--
       }
     //   如果超出边界就结束
@@ -42,3 +45,6 @@ function swap (arr, i, j) {
     arr[i] = arr[j]
     arr[j] = temp
 }
+let arr = [1,5,2,4,9,3]
+quick_sort(arr,0,5)
+console.log(arr)
