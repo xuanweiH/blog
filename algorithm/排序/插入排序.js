@@ -20,3 +20,21 @@ function insert_sort (arr) {
 
 // console.log(insert_sort([1,6,8,5,7,4,9]))
 insert_sort([1,6,8,5,7,4,9])
+
+
+// 插入排序练习
+// 插入排序思路
+// 从第二个元素开始每次都和之前的元素比较
+
+function insert_sort (arr) {
+   for (let i =1;i<arr.length;i++) {
+       let cur = arr[i]
+       let j = i-1 
+       while(j>=0 && cur<arr[j]) {
+           arr[j+1] = arr[j]
+           j--
+       }
+       arr[j+1] = cur
+   }
+   return arr
+}
