@@ -38,3 +38,19 @@ function insert_sort (arr) {
    }
    return arr
 }
+
+
+// 插入排序的思路
+// 从第二个数开始和之前的比,如果比他小就把之前的往后移动一位
+function insert_sort(arr) {
+    for (var i=1;i<arr.length;i++) {
+        let cur = arr[i]
+        let j = i-1
+        while(j>=0 && cur<arr[j]) {
+          arr[j+1] =arr[j]
+          j--
+        }
+        arr[j+1] = cur
+    }
+    return arr
+}
