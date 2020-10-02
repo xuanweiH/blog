@@ -38,3 +38,21 @@ function mutiple (nums1,nums2) {
 }
 
 console.log(mutiple('123','456'))
+
+
+
+// 字符串相乘复习
+function multiple (nums1,nums2) {
+  if (nums1==='0' || nums2==='0') return '0'
+  let res = []
+  for (let i =0;i<nums1.length;i++) {
+      let temp1 = nums1[nums1.length-1-i]
+      for (let j=0;j<nums2.length;j++) {
+          let temp2 = nums2[nums2.length-1-j]
+          let pos = res[i+j] ? res[i+j]+temp1*temp2 : temp1*temp2
+          res[i+j] = pos%10
+          pos>=10 && (res[i+j+1] = (res[i+j+1] ? res[i+j+1]+Math.floor(pos/10): Math.floor(pos/10)))
+      }
+  }
+  return res.reverse().join('')
+}
