@@ -39,3 +39,18 @@ var reverseList = function(head) {
     head.next = null
     return reverseHead
 };
+
+
+// 翻转链表练习
+function reverse(head) {
+   if (!head || !head.next) return head
+   let curr = head, prev = null
+   while(curr) {
+      let next = curr.next
+      curr.next = prev
+      prev = curr
+      curr = next
+   }
+   head = prev
+   return head
+}
