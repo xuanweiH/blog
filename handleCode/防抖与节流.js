@@ -59,3 +59,19 @@ function throttle(fn, gap = 1000) {
 
 
 
+// 手写防抖练习
+// 防抖: 一段时间内的操作只执行最后一次操作
+function debounce(fn, delay=1000, immediate) {
+   let timer
+   return function () {
+       let self = this
+       if (timer) clearTimeout(timer)
+       if (!timer && immediate) {
+           fn.apply(self, arguments)
+       }
+       timer = setTimeout(() => {
+           fn.apply(self, arguments)
+       }, delay)
+   }
+}
+
