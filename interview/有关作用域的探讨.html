@@ -1,0 +1,87 @@
+<script>
+
+
+var a = 10; window.a
+{
+    
+    a = 99; window.a
+    window.a
+    function a() {
+    }
+    a = 30;
+}
+console.log(a);
+
+
+
+
+// var a = 50
+// console.log(window.a)
+// {
+//     a = 50
+//     console.log(a) // 50
+// }
+
+// console.log(a) // a is not define
+//  a = 10
+// {
+//     a = 50
+// }
+
+// {
+//     console.log(window.a)
+//     a = 50
+//     console.log(window.a)
+// }
+
+// <----------------------------- 第一阶段小结 ----------------------------->
+// 在块级作用域内部声明的默认变量(不适用let,var,const修饰),
+// 只有等到执行过你定义那个变量的那行代码后才可以访问，才给window赋值这个属性，在那行代码之前访问会报错
+// 块内的 默认变量依旧是全局变量
+// 在块内的默认变量没执行之前不可以访问这个变量
+
+// console.log(a) // undefined
+// console.log(window.a) // undefined
+// { 
+//     console.log(window.a, a) // undefined f
+//     function a () {
+
+//     }
+// }
+// console.log(window.a, a)  // f f
+
+// <------------------------------- 第二阶段小结 ------------------------------->
+// 块内的函数声明会提升到块内的顶部，同时也会在全局作用域用var声明一个同名的变量，初始值为undefined
+// 这个块外的全局同名变量的赋值时机是执行完块内那行函数声明语句后才赋值
+// 块内的函数声明会提升到块内顶部，区别提升到块外，它并不会用var去声明一个同名的变量
+
+
+// console.log(`${window.a},${a}`); // undefined undefined
+// {
+//     a = 50;
+//     console.log(`${window.a},${a}`); // undefined 50
+//     function a(){} 
+    
+// }
+// console.log(`${window.a},${a}`); // 50 50
+
+
+
+// console.log(`1 ${window.a},${a}`); // undefined undefined
+// {
+//     console.log(`2 ${window.a},${a}`); // undefined f
+//     function a(){}
+//     a = 50;
+//     console.log(`3 ${window.a},${a}`); // f 50
+// }
+// console.log(`4 ${window.a},${a}`); // f f
+
+// < ---------------------------- 第三阶段小结 ----------------------->
+// 块内的函数声明每次执行的时候都会给全局那个同名的变量赋值一次，
+// 并且，只有执行那个定义函数声明的代码才会触发赋值，你写的函数声明就相当于setter,每执行一次就给外部的那个同名的变量赋值一次
+// 如果块内同时有同名的函数声明和默认的变量声明，那给默认的变量赋值时其实相当于赋值给那个同名的函数，
+// 因为查找块内的作用域链时找到了,就不会往全局声明了
+
+
+
+</script>
