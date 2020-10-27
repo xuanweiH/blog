@@ -37,7 +37,7 @@ let mergeSortRec = function (head) {
     let left = mergeSortRec(left)
     let right = mergeSortRec(right)
     // 合并有序链表
-    return xxx(left,right)
+    return mergeTwoList(left,right)
 }
 // 获取中间节点
 function middleNode (head) {
@@ -47,4 +47,71 @@ function middleNode (head) {
         fast = fast.next.next
     }
     return slow
+}
+
+// 合并有序链表 
+let mergeTwoList = function (l1,l2) {
+   let preHead  = new ListNode(-1)
+   let cur = preHead
+   while(l1 && l2) {
+       if (l1.val < l2.val) {
+           cur.next = l1
+           l1 = l1.next
+       } else {
+           cur.next = l2
+           l2 = l2.next
+       }
+       cur = cur.next
+   }
+   cur.next = l1 || l2
+   return preHead.next
+}
+
+// 总结下来
+// 链表排序 采用归并排序
+// 主要分为两步 1. 递归分割链表
+// 2. 排序后合并链表
+
+let sortList = function (head) {
+    return mergeSort(head)
+}
+// 归并
+function mergeSort(head) {
+    if (!head || !head.next) {
+        return head
+    }
+    let midNode = middleNode(head)
+    let temp = midNode.next
+    midNode.next = null
+    let left = head
+    let right = temp
+    left = mergeSort(left)
+    right = mergeSort(right)
+    return mergeTwoList(left,right)
+}
+// 获取中间节点
+function middleNode (head) {
+   let fast = head, slow = head
+   while (fast && fast.next && fast.next.next) {
+       slow = slow.next
+       fast = fast.next.next
+   }
+   return slow
+}
+// 合并有序链表
+function mergeTwoList (l1,l2) {
+   let preHead = new NodeList(-1)
+   let cur = preHead
+   while(l1 && l2) {
+       if (l1.val < l2.val) {
+           cur.next = l1
+           l1 = l1.next
+       } else {
+           cur.next = l2
+           l2 = l2.next
+       }
+       cur = cur.next
+   }
+   cur.next = l1 || l2
+   return preHead.next
 }
