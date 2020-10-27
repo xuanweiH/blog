@@ -1,16 +1,21 @@
 <script>
 
-
-var a = 10; window.a
+// 一道有趣的测试题
+var a = 10; 
+console.log(`1,${window.a},${a}`); // window上挂载了var的a 所以是 10 10
 {
-    
-    a = 99; window.a
-    window.a
+    console.log(`2,${window.a},${a}`); // window上挂载的还是外部的a 但是内部的a 函数提前了 所以是 10 fn
+    a = 99; 
+    console.log(`3,${window.a},${a}`); // window上挂载的还是外部的a 因为还没执行到fn 但是内部a =99 已经执行了 所以是 10 99
     function a() {
     }
+    console.log(`4,${window.a},${a}`); // window上挂载的变成了99 因为fn执行完了 全局要重新赋值了 所以是99 99
     a = 30;
+    console.log(`5,${window.a},${a}`); // 99 30 内部赋值已经不会更改window上的值了
 }
+console.log(`6,${window.a},${a}`); // 99 99
 console.log(a);
+console.log(`7,${window.a},${a}`); // 99 99
 
 
 
