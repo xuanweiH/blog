@@ -4,6 +4,40 @@
 // 比如 猜一个数 介于0-100之间, 第一次猜 告诉你大于50还是小于50然后依次
 // 对半拆分 直到猜中为止
 
+
+
+
+// 手写一个二分查找
+
+function binarySearch(nums,item) {
+  let low = 0, high = nums.length-1
+  let mid
+  while (low<high) {
+      mid = Math.floor((low+high)/2)
+      if (nums[mid]<item) {
+          low = mid+1
+      } else if (nums[mid]>item) {
+          high = mid- 1
+      } else {
+          return mid
+      }
+  }
+  return -1
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // 查找一个数item在不在items里面
 function binarySearch(items, item) {
     let low = 0
