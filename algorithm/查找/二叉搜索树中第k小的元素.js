@@ -24,10 +24,10 @@
 
 // 对于二叉搜索树而言 中序遍历 就是左根右 就是一次排序
 
-let kthSmallest = function (root,k) {
+let kthSmallest = function (root, k) {
     let res = null
     let inorderTraserval = function (node) {
-        if (node!==null && k>0) {
+        if (node !== null && k > 0) {
             inorderTraserval(node.left)
             if (--k == 0) {
                 res = node.val
@@ -38,4 +38,24 @@ let kthSmallest = function (root,k) {
     }
     inorderTraserval(root)
     return res
+}
+
+
+// 二叉树的中序遍历 就可以达到排序的效果
+
+function searchSort(root, k) {
+    let stack = []
+    let node = root
+    while (node || stack.length) {
+        while (node) {
+            stack.push(node)
+            node = node.left
+        }
+        node = stack.pop()
+        if (--k === 0) {
+            return node.val
+        }
+        node = node.left
+    }
+    return null
 }
