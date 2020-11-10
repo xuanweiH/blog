@@ -21,6 +21,48 @@
 // 二分查找
 // 根据中值 如果花费的时间小于H 说明速度还可以加大 反之则降低高位数
 // 吃香蕉练习
+
+
+function eatBanana (piles, H) {
+  // 吃香蕉练习
+  let low = 1, high
+  let maxVal
+  for (let pile of piles) {
+    maxVal = Math.max(maxVal, pile)
+  }
+  high = maxVal
+  let mid = Math.floor((low+high)/2)
+  while(low<high) {
+    if (H<getTime(piles,mid)) {
+      low = mid+1
+    } else {
+      high = mid
+    }
+  }
+}
+function getTime(piles,V) {
+  let times
+  for(let pile of piles) {
+    times+= Math.ceil(pile/V)
+  }
+  return times
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 function eatBanana (piles, H) {
   // 最大慢的速度 low 肯定是为1  最快速度 应该是数组中最大的香蕉树
   // 首先求最高的
