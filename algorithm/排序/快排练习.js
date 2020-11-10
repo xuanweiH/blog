@@ -96,3 +96,42 @@ let quickSort = (arr) => {
 }
 // 2 
 console.log(quickSort([1,5,56,2,4,3]))
+
+
+
+// 原始快排练习
+
+function quickSort(arr) {
+  quick(arr,0,arr.length-1)
+}
+
+function quick(arr,left,right) {
+   if (left>=right) return
+   let index = partion(arr,left,right)
+   if (left<index-1) quick(arr,left,index-1)
+   if(index<right) quick(arr,index,right)
+}
+
+function partion(arr,left,right) {
+//    let privot = arr[left]
+    let privot = Math.floor((Math.random()*(right-left+1))+left)
+    let i = left, j = right
+    while(i<=j) {
+        while (arr[i]<arr[privot]) {
+           i++
+        } 
+        while(arr[j]<arr[privot]) {
+            j--
+        }
+        if (i<=j) {
+            swap(arr,i,j)
+            i+=1
+            j-=1
+        }
+    }
+    return i
+}
+
+function swap(arr,i,j) {
+  [arr[i],arr[j]] = [arr[j],arr[i]]
+}
