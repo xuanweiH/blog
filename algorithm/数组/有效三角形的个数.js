@@ -26,7 +26,7 @@
 //         let i = 0, j = k-1
 //         while(i<j) {
 //             if (arr[i]+arr[j]>arr[k]) {
-//                 count += 1
+//                 count += j-i
 //                 j--
 //             } else {
 //                 i++
@@ -53,7 +53,7 @@ function triangleCount(nums) {
       let i = 0, j = k-1
       while(i<j) {
           if(nums[i]+nums[j]>nums[k]) {
-              count += 1
+              count += j-i
               j--
           } else {
               i++
@@ -63,4 +63,4 @@ function triangleCount(nums) {
   return count
 }
 
-console.log(triangleCount([2,3,3,4]))
+console.log(triangleCount([2,2,3,4]))
