@@ -384,7 +384,16 @@ $ git commit --amend -m [message]
 # 重做上一次commit，并包括指定文件的新变化
 $ git commit --amend [file1] [file2] ...
 ```
+#### pull
+```
+# 从远端origin的master分支更新版本库
+# git pull <远端> <分支>
+$ git pull origin master
 
+# 抓取远程仓库所有分支更新并合并到本地，不要快进合并
+$ git pull --no-ff
+
+```
 #### diff
 显示当前工作空间和提交的不同
 ```
@@ -417,4 +426,120 @@ $ git grep 'variableName' -- '*.java'
 # 搜索包含 "arrayListName" 和, "add" 或 "remove" 的所有行
 $ git grep -e 'arrayListName' --and \( -e add -e remove \)
 
+```
+
+#### log
+```
+# 显示所有提交
+$ git log
+
+# 显示某几条提交信息
+$ git log -n 10
+
+# 仅显示合并提交
+$ git log --merges
+
+# 查看该文件每次提交记录
+$ git log <file>
+
+# 查看每次详细修改内容的diff
+$ git log -p <file>
+
+# 查看最近两次详细修改内容的diff
+$ git log -p -2
+
+#查看提交统计信息
+$ git log --stat
+```
+
+#### merge
+```
+# 将其他分支合并到当前分支
+$ git merge branchName
+
+# 在合并时创建一个新的合并后的提交
+# 不要 Fast-Foward 合并，这样可以生成 merge 提交
+$ git merge --no-ff branchName
+
+```
+
+#### mv
+重命名或移动一个文件
+```
+# 重命名
+$ git mv test.js test2.js
+
+# 移动
+$ git mv test.js ./new/path/test.js
+
+# 改名文件，并且将这个改名放入暂存区
+$ git mv [file-original] [file-renamed]
+
+# 强制重命名或移动
+# 这个文件已经存在，将要覆盖掉
+$ git mv -f myFile existingFile
+
+```
+
+#### tag
+
+```
+# 列出所有tag
+$ git tag
+
+# 新建一个tag在当前commit
+$ git tag [tag]
+
+# 新建一个tag在指定commit
+$ git tag [tag] [commit]
+
+# 删除本地tag
+$ git tag -d [tag]
+
+# 删除远程tag
+$ git push origin :refs/tags/[tagName]
+
+# 查看tag信息
+$ git show [tag]
+
+# 提交指定tag
+$ git push [remote] [tag]
+
+# 提交所有tag
+$ git push [remote] --tags
+
+# 新建一个分支，指向某个tag
+$ git checkout -b [branch] [tag]
+
+```
+#### rebase
+将一个分支上所有的提交历史都应用到另一个分支上不要在一个已经公开的远端分支上使用 rebase.
+```
+# 将experimentBranch应用到master上面
+# git rebase <basebranch> <topicbranch>
+$ git rebase master experimentBranch
+
+
+实际使用:
+可以先使用 git log查看记录 或者指定对应数量的log  git log -10
+找到log 到对应的commitid (你想要更替的记录再之前的一条的commitid
+
+拿到commitid之后使用
+git rebase -i  （commitid
+进入编辑页面------ 编辑之前commit 提供的语句：
+------
+上面未被注释的部分列出的是我们本次rebase操作包含的所有提交，下面注释部分是git为我们提供的命令说明。
+每一个commit id 前面的pick表示指令类型，git 为我们提供了以下几个命令：
+　　pick：保留该commit（缩写:p）
+　　reword：保留该commit，但我需要修改该commit的注释（缩写:r）
+　　edit：保留该commit, 但我要停下来修改该提交(不仅仅修改注释)（缩写:e）
+　　squash：将该commit和前一个commit合并（缩写:s）
+　　fixup：将该commit和前一个commit合并，但我不要保留该提交的注释信息（缩写:f）
+　　exec：执行shell命令（缩写:x）
+　　drop：我要丢弃该commit（缩写:d）
+------
+修改之后输入：wq退出编辑
+
+最后git push --force 一定要强行推才能清掉之前commit记录 不然就推不上去
+如果使用了git pull 之前的变基操作就白费了
 ```
