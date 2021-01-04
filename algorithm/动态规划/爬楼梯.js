@@ -52,3 +52,27 @@ let climbStairs = function(n) {
     return res
 }
 // 其实就是斐波那契数列的解法，缓存数量之和
+
+
+
+// 爬楼梯的动态规划解法
+// dp
+// dp[n] = dp[n-1] + dp[n-2]
+
+let climp = (n) => {
+  let dp = [1,1]
+  for(let i=2; i<n;i++) {
+      dp[i] = dp[i-1] + dp[i-2]
+  }
+  return dp[n]
+}
+// 优化 缓存版本
+let better = (n) => {
+    let res = 1, n1=1,n2=1;
+    for (let i=2;i<n;i++) {
+        res = n1+n2
+        n1= n2
+        n2 =res
+    }
+    return res
+}
