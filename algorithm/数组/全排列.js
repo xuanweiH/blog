@@ -12,7 +12,7 @@ function permutations (nums) {
    let tmpPath = []
    let dfs = (tmpPath) => {
       if (tmpPath.length === len) {
-          res.push(tmpPath)
+          res.push(tmpPath.slice())
           return 
       }
       for(let i=0;i<len;i++) {
@@ -25,6 +25,28 @@ function permutations (nums) {
    }
    dfs(tmpPath)
    return res
-
 }
+// [] [1] [1, 2, 3]
 // console.log([1,2,3].slice())
+
+
+function permutations(nums) {
+    let len = nums.length
+    let res = []
+    let tempPath = []
+    let dfs = (tempPath) => {
+      if(tempPath.length === len) {
+          res.push(tempPath.slice())
+          return
+      }
+      for(let i=0; i<len;i++) {
+          if(!tempPath.includes(nums[i])) {
+              tempPath.push(nums[i])
+              dfs(tempPath)
+              tempPath.pop()
+          }
+      }
+    }
+    dfs(tempPath)
+    return res
+}
