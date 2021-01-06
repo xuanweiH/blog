@@ -42,3 +42,43 @@ function fourSum(nums, target) {
     return res
 }
 
+
+
+// 四数之和 练习
+// 思路 -> 判断数组长度
+// -> 排序
+// 循环
+// i + i+1 + i+2 + i+3 这四个数之和要是大于target 那没救了
+// i + l-1 + l-2 + l-3 这四个数要是小于target 进下一个循环
+
+function four(nums, target) {
+    if(nums.length<4) return []
+    nums.sort((a,b) => a-b)
+    let res = [], len = nums.length
+    for(let i = 0; i< len-3; i++) {
+        if(i>0 && nums[i] === nums[i-1]) continue
+        if(nums[i] + nums[i+1] + nums[i+2] + nums[i+3] > target) break
+        if(nums[i] + nums[len-3] + nums[len-2] + nums[len-1] < target) continue
+        for(let j=i+1;j<len-2;j++) {
+          if(j>i+1 && nums[j] === nums[j-1]) continue
+          if(nums[i] + nums[j] + nums[j+1] + nums[j+2] > target) break
+          if(nums[i] + nums[j] + nums[len-2] + nums[len-1]) continue
+          let left = j+1,right = len-1
+          while(left<right) {
+            let sum = nums[i] + nums[j] + nums[left] + nums[right]
+            if(sum === target) {
+                res.push([nums[i],nums[j],nums[left],nums[right]])
+                while(left<right && nums[left] === nums[left+1]) left++
+                while(left<right && nums[right] === nums[right-1]) right--
+                left++
+                right-- 
+            } else {
+                if(sum<target) left++
+                if(sum>target) right--
+            }
+          }
+        }
+    }
+    return res
+}
+
