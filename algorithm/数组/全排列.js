@@ -50,3 +50,26 @@ function permutations(nums) {
     dfs(tempPath)
     return res
 }
+
+
+// 全排列练习
+function permutations(nums) {
+    let len = nums.length
+    let res = []
+    let tempPath = []
+    let dfs = (tempPath) => {
+        if(tempPath.length === len) {
+            res.push(tempPath.slice())
+            return
+        }
+        for(let num of nums) {
+            if(!tempPath.includes(num)) {
+                tempPath.push(num)
+                dfs(tempPath)
+                tempPath.pop()
+            }
+        }
+    }
+    dfs(tempPath)
+    return res
+}
