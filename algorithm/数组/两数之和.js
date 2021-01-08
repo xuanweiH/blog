@@ -43,3 +43,15 @@ function twoSum(nums, target) {
 // }
 
 
+// 两数之和复习
+function twoSum(nums, target) {
+   let len = nums.length
+   let map = new Map()
+   for(let i=0; i<len;i++){
+       let k = target - nums[i]
+       if(map.has(k)) {
+         return [map.get(k), i]
+       }
+       map.set(nums[i], i)
+   }
+ }
