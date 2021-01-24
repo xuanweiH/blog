@@ -18,6 +18,16 @@ function interSection (args) {
 
 
 
+// get 交集
+function getSame(args) {
+   if(args.length === 0) return []
+   if(args.length === 1) return [args[0]]
+   return [...new Set(args.reduce((pre,cur)=>{
+       return pre.filter(item => cur.include(item))
+   }))]
+}
+
+
 
 
 
