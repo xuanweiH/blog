@@ -41,3 +41,18 @@ var intersection = function(nums1, nums2) {
     }
     return result;
  };
+
+
+
+ // set实现求数组交集
+function intersection (nums1, nums2) {
+   let res = []
+   let set1 = new Set([...nums1])
+   let set2 = new Set([...nums2])
+   for(let item of set2) {
+     if(set1.has(item)) {
+       res.push(item)
+     }
+   }
+   return res
+}
