@@ -56,3 +56,19 @@ function intersection (nums1, nums2) {
    }
    return res
 }
+
+
+
+// 数组求交集
+// set方式
+function getInsertio(nums1,nums2) {
+  let arr1 = new Set([...nums1])
+  let arr2 = new Set([...nums2])
+  const res = []
+  for(let item of arr1) {
+    if(arr2.has(item)){
+      res.push(item)
+    }
+  }
+  return res
+}
