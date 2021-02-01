@@ -38,3 +38,16 @@ function newArray() {
     return arr
 }
 newArray()
+
+
+
+// 数组扁平化的思路
+
+// 1. flat 解构层数 返回新数组
+
+// 2. 
+function flatten(arr) {
+  return arr.reduce((pre,cur) => {
+      pre.concat(Array.isArray(cur)? flatten(cur):cur)
+  }, [])
+}
