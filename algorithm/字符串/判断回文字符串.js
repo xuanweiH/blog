@@ -16,5 +16,27 @@ function judge (str) {
        l++
        r--
    }
-   return trur
+   return true
+}
+
+
+
+
+
+
+// 判断回文字符串 复习1
+// api 
+function isCircle(str) {
+  return str === str.split(',').reverse().join('')
+}
+
+function isCircle2(str) {
+  if(typeof(str) !== 'string') return false
+  let l = 0, r=str.length-1
+  while(l<=r) {
+    if(str[l] !== str[r]) return false
+    l++
+    r--
+  }
+  return true
 }
