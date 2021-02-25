@@ -56,3 +56,30 @@ function multiple (nums1,nums2) {
   }
   return res.reverse().join('')
 }
+
+
+// 字符串相乘复习
+function multiple(str1, str2) {
+    if(str1 ==='0' || str2==='0') return '0'
+    let res = []
+    for(let i=0;i<str1.length;i++) {
+        // 1号位的末置位
+        let temp1 = str1[str1.length-1-i]
+        for(let j=0;j<str2.length;j++) {
+            // 2号位的末置位
+            let temp2 = str2[str2.length-1-j]
+            // 相乘的结果
+            let pos  = res[i+j] ? res[i+j]+temp1*temp2 : temp1*temp2
+            res[i+j] = pos%10
+            // 进位
+            pos>=10 && (res[i+j+1]? res[i+j+1]+Math.floor(pos/10) : Math.floor(pos/10))
+        }
+    }
+    return res.reverse().join("")
+}
+
+
+
+
+
+
