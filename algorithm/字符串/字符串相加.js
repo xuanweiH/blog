@@ -24,11 +24,11 @@ function sum (str1, str2) {
         res = tmp%10 + res
         if (tmp>9) tmp = 1
         else tmp = 0
-        if (tmp) res = 1+res
     }
+    if (tmp) res = 1+res
     return res
 }
-console.log(sum('12314','1231'))
+// console.log(sum('12314','1231'))
 // 或者用数组来做 ~~(tmp/10)  ~~取整 大于等于10为1 小于10为0
 function add(str1, str2) {
     let result = ''
@@ -44,3 +44,24 @@ function add(str1, str2) {
   
     return result.replace(/^0+/, '')
   }
+
+console.log(add('189', '45'))
+
+
+  // 字符串相加复习
+  // tmp 用于储存每一位的相加 之后再用进位
+  function strSum(str1, str2) {
+    let a = str1.length, b= str2.length, tmp = 0, res = ''
+    while(a || b) {
+      a ? tmp += +str1[--a]: ""
+      b ? tmp += +str2[--b]: ""
+      res = tmp%10 + res
+      console.log(res, 'res')
+      if(tmp>9) tmp = 1
+      else tmp =0 
+    }
+    if(tmp) res = 1+res
+    return res
+  }
+  console.log(strSum('189','45'))
+  // 189 45   9 5  14  res 4   tmp1  13 34  
