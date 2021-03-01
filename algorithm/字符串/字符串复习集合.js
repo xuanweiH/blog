@@ -43,3 +43,44 @@ function reverseWord1(str) {
   queue.unshift(word)
   return queue.reverse().join(' ')
 }
+
+
+// 
+function isCir(str) {
+   return str === str.split('').reverse().join()
+}
+// 
+function isCir1(str) {
+  let l=0, r=str.length-1
+  if(typeof(str) !== 'string') return false
+  while(l<r) {  
+    if(str.chatAt(l) !== str.chatAt(r)) return false
+    l++
+    r--
+  }
+  return true
+}
+// 
+function isword(str) {
+  return str.trim().replace(/\s+/g, ' ').split(' ').reverse().join()
+}
+// 
+function isword(str) {
+  let l = 0, r=str.length-1
+  let word = ''
+  let queue = []
+  while(l<r) {
+    while(str.chatAt(l) === ' ') l++
+    while(str.chatAt(r) === ' ') r--
+    let chat = str.chatAt(l)
+    if(chat ===' ' && word) {
+       queue.unshift(word)
+       word = ''
+    } else if(chat !== ' ') {
+      word+=chat
+    }
+    l++
+  }
+  queue.unshift(word)
+  queue.reverse().join(' ')
+}
