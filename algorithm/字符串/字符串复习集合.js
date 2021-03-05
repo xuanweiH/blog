@@ -77,7 +77,20 @@ function max(str) {
   }
   return [s,max]
 }
-
+// 最长不重复的字符串长度
+function getlength(str) {
+  let arr = []
+  let length = 0
+  for(let item of str) {
+    if(arr.includes(item)) {
+      let index = arr.indexOf(item)
+      arr.splice(0, index+1)
+    }
+    arr.push(item)
+  }
+  length = length>arr.length ? length:arr.length 
+  return length
+}
 
 // 
 function isCir(str) {
@@ -183,4 +196,83 @@ function multi(str1, str2) {
     }
   }
   return res.reverse().join('')
+}
+
+
+// 字符串回文
+function ishui(str) {
+  let l=0,r=str.length-1
+  if(typeof(str) !== 'string') return false
+  while(l<r) {
+    if(str.chatAt(l)!==str.chatAt(r)) return false
+    l++
+    r--
+  }
+  return true
+}
+// 翻转单词
+function isword(str) {
+  let l=0,r=str.length-1
+  let queue = []
+  let word = ''
+  while(l<r) {
+    while(str.chatAt(l) === ' ') l++
+    while(str.chatAt(r) === ' ') r--
+    let chat = str.chatAt(l)
+    if(chat === ' ' && word) {
+      queue.unshift(word)
+      word = ''
+    } else if(chat!== ' ') {
+      word+=chat
+    }
+    queue.unshift(word)
+    return queue.reverse().join()
+  }
+}
+// 字符串相加
+function sum(str1,str2) {
+  let a = str1.length-1, b = str2.length-1
+  let tmp = 0, res = ''
+  while(a||b) {
+    a? tmp += str1[--a]: ""
+    b? tmp += str2[--b]: ""
+    res = tmp%10 + res
+    if(tmp>9) tmp = 1
+    else tmp = 0
+  }
+  if(tmp) res = 1+res
+  return res
+}
+// 字符串相乘
+function mul(str1,str2) {
+ let res = []
+ for(let i=0;i<str1.length-1;i++) {
+   let tmp1 = str1[str1.length-1]
+   for(let j=0;j<str2.length-1;j++) {
+     let tmp2 = str2[str2.length-1]
+     let pos = res[i+j] ? res[i+j] + tmp1*tmp2 : tmp1*tmp2
+     res[i+j] = pos%10
+     res[i+j+1] = (res[i+j+1] ? (res[i+j]+Math.floor(pos/10)): Math.floor(pos/10))
+   }
+ }
+ return res.reverse().join('')
+}
+// 字符串出现最多的次数
+function max(str) {
+  let obj = {}
+  let arr = str.split('')
+  let s = arr[0]
+  let max = 0
+  for(let i=0;i<arr.length-1;i++) {
+    if(obj[arr[i]]) {
+      let count = ++obj[arr[i]]
+      if(count>max) {
+        max = count
+        s = arr[i]
+      }
+    } else {
+      obj[arr[i]] = 0
+    }
+  }
+  return [s,max]
 }
