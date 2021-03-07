@@ -44,6 +44,28 @@ function reverseWord1(str) {
   return queue.reverse().join(' ')
 }
 
+// 字符串相加
+function strSum(str1, str2) {
+  let a = str1.length-1, b=str2.length-1, tmp=0, res = ''
+  while(a || b) {
+    a ? tnp += str[--a] : ""
+    b ? tmp += str[--b] : ""
+    res = tmp%10 + res
+    if(tmp>9) tmp = 1
+    else tmp = 0
+  }
+  if(tmp) res= 1+res
+  return res
+}
+
+
+
+
+
+
+
+
+
 
 // 
 function isCir(str) {
