@@ -276,3 +276,40 @@ function max(str) {
   }
   return [s,max]
 }
+
+// 复习最长不重复子串
+function getlen(str) {
+  let arr = [],length = 0
+  for(let item of str) {
+    if(arr.includes(item)) {
+      let index = str.indexOf(item)
+      arr.splice(0,index+1)
+    } else {
+      arr.push(item)
+    }
+  }
+  length = arr.length>length ? arr.length : length
+  return length 
+}
+
+// 字符串出现最多的次数
+function isMaX(str) {
+  let obj = {}
+  let arr = str.split("")
+  let max = 1
+  let s = arr[0]
+  for(let i=0;i<str.length-1;i++) {
+     if(obj[arr[i]]) {
+       count = ++obj[arr[i]]
+       if(count>max) {
+         max = count 
+         s = arr[i]
+
+       }
+
+     } else {
+       obj[arr[i]] = 0
+     }
+  }
+  return [s,max]
+}
