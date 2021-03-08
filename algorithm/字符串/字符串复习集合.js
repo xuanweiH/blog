@@ -276,3 +276,20 @@ function max(str) {
   }
   return [s,max]
 }
+
+
+//最长不重复子串复习
+function max(str) {
+   let arr = []
+   let length = 0
+   for(let item of str) {
+     if(arr.includes(item)) {
+       let index = arr.indexOf(item)
+       arr.splice(0,index+1)
+     } else {
+       arr.push(item)
+     }
+   }
+   length = length>arr.length ? length:arr.length
+   return length
+}
