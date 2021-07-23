@@ -172,25 +172,32 @@
 // console.log(newList)
 
 
-function curry (fn, ...args) {
-    return function temp (...innerArgs) {
-        if (innerArgs.length !==0) {
-            args = [...args,...innerArgs]
-            return temp
-        } else {
-           const val = fn.apply(this, ...args)
-           args = []
-           return val
-        }
-    }
-}
+// function curry (fn, ...args) {
+//     return function temp (...innerArgs) {
+//         if (innerArgs.length !==0) {
+//             args = [...args,...innerArgs]
+//             return temp
+//         } else {
+//            const val = fn.apply(this, ...args)
+//            args = []
+//            return val
+//         }
+//     }
+// }
 
-function curry (fn, ...args) {
-    return function temp (...innerArgs) {
-        if (innerArgs.length === args.length) {
-           return fn(...args)
-        } else {
+// function curry (fn, ...args) {
+//     return function temp (...innerArgs) {
+//         if (innerArgs.length === args.length) {
+//            return fn(...args)
+//         } else {
           
-        }
-    }
+//         }
+//     }
+// }
+
+var obj = {1:'123', 2: 'dhuasdh', 3: 'adasd'}
+var arr = []
+for (const [key, value] of Object.entries(obj)) {
+    arr.push({'label': value, 'value': key})
 }
+console.log(arr)
