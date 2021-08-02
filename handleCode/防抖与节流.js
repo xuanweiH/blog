@@ -5,73 +5,97 @@
 // 常用于 搜索框检索 onresize
 
 /**
- * 
+ *
  * @param fn 传递的函数
  * @param delay 延迟时间 不给默认传1000
- * @param immediate 是否立即执行 
- * 
- */ 
+ * @param immediate 是否立即执行
+ *
+ */
 function debounce(fn, delay = 1000, immediate) {
-   let timer 
-   return function () {
-       let self = this
-       if (timer) clearTimeout(timer)
-       if (!timer && immediate) {
-           fn.apply(self, arguments)
-       }
-       timer = setTimeout(()=> {
-           fn.apply(self, arguments)
-       }, delay)
-   }
+  let timer;
+  return function () {
+    let self = this;
+    if (timer) clearTimeout(timer);
+    if (!timer && immediate) {
+      fn.apply(self, arguments);
+    }
+    timer = setTimeout(() => {
+      fn.apply(self, arguments);
+    }, delay);
+  };
 }
 /**
- * 
+ *
  * @param fn 传递的函数
  * @param gap 时间差 不给默认传1000
- * 
- */ 
+ *
+ */
 // 标识版本
 function throttle(fn, gap = 1000) {
-    let timer
-    return function () {
-        let self = this
-        if (!timer) {
-            timer = setTimeout(()=> {
-                timer = null
-                fn.apply(self, arguments)
-            },gap)
-        }
-
+  let timer;
+  return function () {
+    let self = this;
+    if (!timer) {
+      timer = setTimeout(() => {
+        timer = null;
+        fn.apply(self, arguments);
+      }, gap);
     }
+  };
 }
 // 时间戳版本
 function throttle(fn, gap = 1000) {
-  let lastTime = 0
+  let lastTime = 0;
   return function () {
-    let self = this
-    let nowTime = new Date().getTime()
-      if (nowTime - lastTime > gap) {
+    let self = this;
+    let nowTime = new Date().getTime();
+    if (nowTime - lastTime > gap) {
+      fn.apply(self, arguments);
+      lastTime = nowTime;
+    }
+  };
+}
+
+// 手写防抖练习
+// 防抖: 一段时间内的操作只执行最后一次操作
+function debounce(fn, delay = 1000, immediate) {
+  let timer;
+  return function () {
+    let self = this;
+    if (timer) clearTimeout(timer);
+    if (!timer && immediate) {
+      fn.apply(self, arguments);
+    }
+    timer = setTimeout(() => {
+      fn.apply(self, arguments);
+    }, delay);
+  };
+}
+
+// 防抖-> 一段时间内执行按最后一次触发
+function debounce(fn, delay = 1000) {
+  let timer;
+  return function () {
+    let self = this;
+    if (timer) {
+      clearTimeout(timer);
+    }
+    timer = settimeout(() => {
+      fn.apply(self, arguments);
+    }, delay);
+  };
+}
+
+// 节流
+function throttle(fn, gap = 1000) {
+  let lastTime = 0
+  return function() {
+      let self = this;
+      let nowTime = new Date().getTime();
+      if(nowTime - lastTime > gap) {
           fn.apply(self, arguments)
           lastTime = nowTime
       }
   }
+
 }
-
-
-
-// 手写防抖练习
-// 防抖: 一段时间内的操作只执行最后一次操作
-function debounce(fn, delay=1000, immediate) {
-   let timer
-   return function () {
-       let self = this
-       if (timer) clearTimeout(timer)
-       if (!timer && immediate) {
-           fn.apply(self, arguments)
-       }
-       timer = setTimeout(() => {
-           fn.apply(self, arguments)
-       }, delay)
-   }
-}
-
