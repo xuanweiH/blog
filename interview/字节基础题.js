@@ -11,4 +11,4 @@ let x = [1,2]
 let y = x
 y[1] = 4
 x = 3
-console.log(x, y)  //[1,4]
+console.log(x, 'xy', y)  //[1,4]
