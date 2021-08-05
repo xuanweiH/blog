@@ -99,3 +99,23 @@ function throttle(fn, gap = 1000) {
   }
 
 }
+
+// 节流优化
+
+function throttle(fn, delay) {
+  let timer = null
+  let startTime = Date.now()
+  return function () {
+    let curTime = Date.now()
+    let self = this
+    let remain = delay - (curTime-startTime)
+    clearTimeout(timer)
+    if(remain <=0) {
+      fn.apply(self, arguments)
+      startTime = Date.now()
+    } else {
+      timer = setTimeout(fn, remain)
+    }
+
+  }
+}
