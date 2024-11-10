@@ -34,6 +34,21 @@
 // console.log(add(1)(2,3)(4)())
 
 
+function curry(fn, args = []) {
+    return function temp(...innerArgs) {
+        if(innerArgs.length !== 0) {
+            args = [...args, ...innerArgs]
+            return temp
+        } else {
+            const val = fn.apply(this, args)
+            args = []
+            return val
+        }
+    }
+}
+
+
+
 // 参数已知情况下的柯里化
 // function curry (fn) {
 //     console.log('fn',fn)

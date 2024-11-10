@@ -73,3 +73,28 @@ function permutations(nums) {
     dfs(tempPath)
     return res
 }
+
+
+// 全排列复习
+
+function allsort(nums) {
+    let len = nums.length
+    let res = []
+    let tempPath = []
+    let dfs = (tempPath) => {
+        if(tempPath.length === len) {
+            res.push(tempPath.slice())
+            return
+        }
+        for(let item of nums) {
+            if(!tmpPath.includes(item)) {
+                tempPath.push(item)
+                dfs(tmpPath)
+                tempPath.pop()
+            }
+        }
+        
+    }
+    dfs(tmpPath)
+    return res
+}
