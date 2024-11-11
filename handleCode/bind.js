@@ -20,6 +20,16 @@ Function.prototype.bind2 = function (context) {
 }
 
 
+function mybind(ctx, ...outargs){
+  ctx? Object(ctx) : window;
+  const fn = Symbol()
+  ctx[fn] = this
+  return function(...inneragrs) {
+    return ctx[fn](...inneragrs, ...outargs)
+  }
+}
+Function.prototype.mybind = mybind
+
 
 // Function.prototype.bind2 = function (context) {
 //     if(typeof this !== 'function') {throw new Error()}

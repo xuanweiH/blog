@@ -13,7 +13,7 @@ function myNew(ctx, ...args) {
   // 1.创建一个对象
   let obj = {};
   // 2.继承构造函数的原型
-  obj.__proto__ = Object.create(ctx.protoType);
+  obj.__proto__ = Object.create(ctx.prototype);
   // 3. 获取this指向
   let res = ctx.apply(obj, ...args);
   // 4. 判断结果
@@ -34,10 +34,29 @@ function myNew(ctx, ...args) {
     throw Error();
   }
   let obj = {};
-  obj.__proto__ = Object.create(ctx.protoType);
+  obj.__proto__ = Object.create(ctx.prototype);
   let res = ctx.apply(obj, ...args);
   // 4. 判断结果
   let isObj = typeof res === "object" && res !== null;
   let isFun = typeof res === "function";
   isObj || isFun ? res : obj;
+}
+
+
+
+
+
+// new 做了哪些事情
+// 1. 创建一个对象
+// 2. 让对象的原型继承构造函数的原型
+// 3. 让this指向这个对象
+// 4. 返回一个对象or构造函数
+
+function myNew2(ctx, ...args) {
+   let obj = {}
+   obj.__proto__ = Object.create(ctx.prototype)
+   let res = ctx.apply(obj, ...args)
+   let isObj = typeof res === "object" && res !== null;
+   let isFun = typeof res === "function";
+   isObj || isFun ? res : obj;
 }
