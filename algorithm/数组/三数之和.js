@@ -117,3 +117,32 @@
 //3.2 这道题难度在于要考虑的细节太多，多想想即可。
 //3.3 扩展一下，如果是4数之和，五数之和，N数之和呢？怎么解决？
 
+function threeSums (nums) {
+    nums.sort((a,b) => {return a-b})
+    if (nums.length < 3 ) return
+    for (let i=0;i<nums.length;i++) {
+        let left = i+1;
+        let right = nums.length-1
+        let res = []
+        if(nums[i] >0) break
+        if (i && nums[i]===nums[i-1]) continue
+        let sum = nums[i]+nums[left]+nums[right]
+        while(left<right) {
+           if (sum===0) {
+              res.push([nums[i],nums[left],nums[right]])
+              while (nums[left]===nums[left-1]) {
+                left++
+              }
+              while (nums[right]===nums[right-1]) {
+                right--
+              }
+           } else if (sum>0) {
+            right--}else{
+                left++
+            }
+        }
+     
+
+    }
+    return res
+}

@@ -66,3 +66,21 @@ function mergesort(nums1, m, nums2, n) {
    nums1[len--] = nums1[len1] >= nums2[len2] ?nums1[len1--]: nums2[len2--]
   }
 }
+
+
+
+
+function mergeSort(arr1, m, arr2, n) {
+  let len = m+n-1
+  let len1 = m-1
+  let len2 = n-1
+  while(len2>=0) {
+     if (len1<0) {
+      arr1[len--] = arr2[len2--]
+      continue
+
+     }
+     arr1[len--] = arr1[len1]>=arr2[len2] ? arr1[len1--]: arr2[len2--]
+  }
+
+}

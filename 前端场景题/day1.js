@@ -1,5 +1,12 @@
 // 如何判断用户设备
 
+// -- 复习 
+// 主要是通过navigator.userAgent来判断用户设备信息
+// 也可以借用库 mobile.detect传入
+//  生成md .phone .tablet 判断是手机还是平板或者其他
+
+
+
 /* const userAgent = navigator.userAgent;
 navigator.userAgent  -> 获取浏览器信息
 

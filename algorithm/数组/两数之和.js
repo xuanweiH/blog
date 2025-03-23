@@ -79,3 +79,16 @@ var twoSum = function(nums, target) {
        map.set(nums[i], i)
     }
 };
+
+
+function sum2(arr, target) {
+    let map = new Map()
+    for(let i=0;i<arr.length;i++) {
+       
+        let key = target - arr[i]
+        if (map.has(key)) {
+          return [i,map.get(key)]
+        }
+        map.set(arr[i], i)
+    }
+}
